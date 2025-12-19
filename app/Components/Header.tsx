@@ -40,7 +40,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 ">
       <div className="px-6 py-4 flex items-center justify-between">
         {/* Left side - Search */}
         <div className="flex items-center flex-1">
@@ -58,15 +58,6 @@ const Header = () => {
 
         {/* Right side - Icons and User */}
         <div className="flex items-center space-x-4">
-          {/* Theme Toggle */}
-          <Button
-            isIconOnly
-            variant="light"
-            onPress={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          >
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-          </Button>
-
           {/* Notifications */}
           <Button
             isIconOnly

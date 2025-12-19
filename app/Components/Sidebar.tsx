@@ -2,14 +2,10 @@
 
 import React from 'react';
 import { 
-  Home, 
-  BarChart3, 
+  Home,  
   Users, 
   Settings, 
-  FileText,
-  Package,
-  CreditCard,
-  HelpCircle
+  LogOut
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { Link } from "@heroui/link";
@@ -25,19 +21,17 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+    <aside className="w-64 bg-black border-r border-gray-800 flex flex-col">
       {/* Logo */}
-      <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-          Admin<span className="text-primary">Panel</span>
-        </h1>
+      <div className="p-6 border-b border-gray-800">
+        <img src="/logo/logo.png" alt="Logo" />
       </div>
       
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href;
+          const isActive = pathname === item.href || pathname?.startsWith(item.href);
           
           return (
             <Link
@@ -45,8 +39,8 @@ const Sidebar = () => {
               href={item.href}
               className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                 isActive
-                  ? 'bg-primary/10 text-primary border-l-4 border-primary'
-                  : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  ? 'text-white border-l-4 border-red-600'
+                  : 'text-gray-300  hover:text-white'
               }`}
             >
               <Icon size={20} />
@@ -57,20 +51,14 @@ const Sidebar = () => {
       </nav>
       
       {/* Sidebar Footer */}
-      <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-        <div className="flex items-center space-x-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-700">
-          <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-            <span className="font-bold text-primary">A</span>
-          </div>
-          <div className="flex-1">
-            <p className="text-sm font-medium text-gray-800 dark:text-white">
-              Admin User
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              Administrator
-            </p>
-          </div>
-        </div>
+      <div className="p-4 border-t border-gray-800">
+        <Button
+          className="w-full mt-4 bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white"
+          startContent={<LogOut size={18} />}
+          variant="light"
+        >
+          Logout
+        </Button>
       </div>
     </aside>
   );

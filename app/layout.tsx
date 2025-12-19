@@ -3,11 +3,10 @@ import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
+import LayoutShell from "./client-layout";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import Sidebar from "@/app/Components/Sidebar";
-import Header from "@/app/Components/Header";
 
 export const metadata: Metadata = {
   title: {
@@ -20,13 +19,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -34,29 +26,14 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <head />
       <body
         className={clsx(
           "min-h-screen text-foreground bg-background font-sans antialiased",
-          fontSans.variable,
+          fontSans.variable
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="flex h-screen">
-            {/* Sidebar */}
-            <Sidebar />
-            
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col overflow-hidden">
-              {/* Header */}
-              <Header />
-              
-              {/* Main Content Area */}
-              <main className="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-gray-900">
-                {children}
-              </main>
-            </div>
-          </div>
+        <Providers themeProps={{ attribute: "class", }}>
+          <LayoutShell>{children}</LayoutShell>
         </Providers>
       </body>
     </html>
