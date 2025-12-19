@@ -3,7 +3,7 @@ import { Metadata, Viewport } from "next";
 import { Link } from "@heroui/link";
 import clsx from "clsx";
 
-import { Providers } from "./providers";
+import { Providers } from "@/app/providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
@@ -43,7 +43,7 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
-            <main className="container flex-grow px-6 pt-16 mx-auto max-w-7xl">
+            <main className="container flex-grow mx-auto max-w-7xl">
               {children}
             </main>
           </div>
