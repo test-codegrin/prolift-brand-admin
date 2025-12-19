@@ -1,13 +1,8 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@heroui/link";
-import clsx from "clsx";
-
 import { Providers } from "@/app/providers";
-
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
-import { Navbar } from "@/components/navbar";
+import LayoutWrapper from "@/app/(admin)/components/layout-wrapper";
 
 export const metadata: Metadata = {
   title: {
@@ -35,18 +30,11 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head />
-      <body
-        className={clsx(
-          "min-h-screen text-foreground bg-background font-sans antialiased",
-          fontSans.variable,
-        )}
-      >
+      <body>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
-            <main className="container flex-grow mx-auto max-w-7xl">
-              {children}
-            </main>
-          </div>
+          <LayoutWrapper>
+            {children}
+          </LayoutWrapper>
         </Providers>
       </body>
     </html>

@@ -9,7 +9,7 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler", // Changed from "node" to "bundler" for Next.js 13+
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -21,8 +21,18 @@
     ],
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    // Add these for better TypeScript support
+    "allowSyntheticDefaultImports": true,
+    "moduleDetection": "force"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts", 
+    "**/*.ts", 
+    "**/*.tsx", 
+    ".next/types/**/*.ts",
+    "**/*.js", // Add .js files if you have any
+    "**/*.jsx" // Add .jsx files if you have any
+  ],
   "exclude": ["node_modules"]
 }
